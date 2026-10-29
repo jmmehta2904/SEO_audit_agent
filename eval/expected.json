@@ -1,0 +1,41 @@
+{
+  "01_complete.html": [],
+  "02_empty.html": [
+    "title_missing",
+    "meta_description_missing",
+    "h1_count",
+    "canonical_missing",
+    "viewport_missing",
+    "html_lang_missing",
+    "low_word_count",
+    "open_graph_missing"
+  ],
+  "03_short_title.html": [
+    "title_too_short"
+  ],
+  "04_long_title.html": [
+    "title_too_long"
+  ],
+  "05_missing_description.html": [
+    "meta_description_missing"
+  ],
+  "06_short_description.html": [
+    "meta_description_length"
+  ],
+  "07_multiple_headings.html": [
+    "h1_count"
+  ],
+  "08_image_alternatives.html": [
+    "images_without_alt"
+  ],
+  "09_missing_metadata.html": [
+    "canonical_missing",
+    "viewport_missing",
+    "html_lang_missing",
+    "open_graph_missing"
+  ],
+  "10_hostile_sparse.html": [
+    "title_too_short",
+    "low_word_count"
+  ]
+}

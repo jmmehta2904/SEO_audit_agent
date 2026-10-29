@@ -1,0 +1,19 @@
+# Source deploy only needs the image build inputs. No .git or local credentials.
+**
+!Dockerfile
+!.dockerignore
+!.gcloudignore
+!requirements.txt
+!requirements.lock
+!seo_audit/
+!seo_audit/**
+!app/
+!app/**
+**/__pycache__/
+**/*.py[cod]
+**/.env*
+**/credentials*.json
+**/*-credentials.json
+**/service-account*.json
+**/*.pem
+**/*.key

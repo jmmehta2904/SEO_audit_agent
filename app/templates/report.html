@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <title>SEO audit report</title>
+  <style>
+    :root { color-scheme: light; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; color: #172238; background: #f4f6fa; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-size: 15px; line-height: 1.55; }
+    main { max-width: 1160px; margin: 36px auto; padding: 32px; background: #fff; border: 1px solid #dce2ec; border-radius: 12px; }
+    h1 { margin: 0 0 12px; font-size: 32px; line-height: 1.2; letter-spacing: -.5px; }
+    h2 { margin: 0 0 16px; font-size: 22px; }
+    p { margin: 0 0 12px; }
+    .eyebrow { color: #53637e; font-size: 12px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; }
+    .page-url { color: #344967; overflow-wrap: anywhere; }
+    .metadata { display: flex; gap: 12px 28px; flex-wrap: wrap; margin: 20px 0; font-size: 13px; color: #53637e; }
+    .metadata div { overflow-wrap: anywhere; }
+    .metadata dt { font-weight: 700; }
+    .metadata dd { margin: 0; }
+    .actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin: 24px 0; }
+    .download { display: inline-block; padding: 10px 16px; background: #183e70; border-radius: 6px; color: #fff; text-decoration: none; font-weight: 600; }
+    .print-hint { color: #53637e; font-size: 13px; }
+    .counts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 24px 0 16px; }
+    .count { padding: 16px 20px; background: #f5f7fb; border: 1px solid #dce2ec; border-radius: 8px; }
+    .count strong { display: block; font-size: 28px; }
+    .count span { font-size: 13px; color: #53637e; }
+    .verification { padding: 14px 16px; background: #edf5f2; border-left: 3px solid #287459; }
+    .notice { padding: 14px 16px; background: #fff5df; border-left: 3px solid #9c6a00; margin: 18px 0; }
+    section { margin-top: 32px; }
+    .table-wrap { overflow-x: auto; }
+    table { border-collapse: collapse; width: 100%; table-layout: fixed; }
+    th, td { padding: 12px; text-align: left; vertical-align: top; border: 1px solid #dce2ec; overflow-wrap: anywhere; }
+    th { background: #f5f7fb; font-size: 12px; color: #344967; }
+    td { font-size: 13px; }
+    td p { margin: 8px 0 0; }
+    .source-column { width: 12%; }
+    .severity-column { width: 10%; }
+    .issue-column { width: 28%; }
+    .evidence-column, .fix-column { width: 25%; }
+    .badge { display: inline-block; border-radius: 4px; padding: 2px 7px; font-size: 12px; font-weight: 700; }
+    .severity-high { background: #fbe9e9; color: #9c2525; }
+    .severity-medium { background: #fff2d5; color: #805500; }
+    .severity-low { background: #eaf0fa; color: #234c88; }
+    .evidence { white-space: pre-wrap; }
+    .fact-label { width: 25%; }
+    .fact-key { display: block; color: #53637e; font-size: 11px; font-weight: 400; }
+    .fact-value { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; font: inherit; }
+    .empty { padding: 20px; border: 1px solid #dce2ec; border-radius: 6px; }
+    .limitations { color: #53637e; font-size: 13px; }
+    .limitations li { margin: 8px 0; }
+    @media (max-width: 700px) {
+      main { margin: 0; padding: 20px; border: 0; border-radius: 0; }
+      h1 { font-size: 27px; }
+      .findings-table { min-width: 760px; }
+      .count { padding: 12px; }
+    }
+    @page { margin: 14mm; }
+    @media print {
+      :root, body { background: #fff; color: #000; font-size: 10pt; }
+      main { max-width: none; margin: 0; padding: 0; border: 0; border-radius: 0; }
+      .no-print { display: none; }
+      h1 { font-size: 22pt; }
+      h2 { font-size: 15pt; break-after: avoid; }
+      table, .findings-table { min-width: 0; }
+      th, td { padding: 7px; font-size: 9pt; }
+      thead { display: table-header-group; }
+      tr, .counts, .verification, .notice { break-inside: avoid; }
+      section { margin-top: 22px; }
+      .count strong { font-size: 20pt; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <p class="eyebrow">Single-page evidence review</p>
+    <h1>SEO audit report</h1>
+    <p class="page-url">{{ report.url }}</p>
+    <dl class="metadata">
+      <div><dt>Generated (UTC)</dt><dd><time datetime="{{ timestamp }}">{{ timestamp }}</time></dd></div>
+      <div><dt>Model</dt><dd>{{ report.model_name }}</dd></div>
+      <div><dt>ADK version</dt><dd>{{ report.adk_version }}</dd></div>
+    </dl>
+    <div class="actions no-print">
+      <a class="download" href="data:application/json;base64,{{ download }}" download="seo-audit-report.json">Download JSON</a>
+      <span class="print-hint">Use your browser's Print command to print or save a PDF.</span>
+    </div>
+  </header>
+  {% if report.review_mode == "stub" %}
+  <p class="notice"><strong>Local stub mode:</strong> no real AI review was performed.</p>
+  {% endif %}
+  <section aria-label="Finding counts">
+    <div class="counts">
+      {% for severity in ["high", "medium", "low"] %}
+      <div class="count"><strong>{{ report.severity_counts[severity] }}</strong><span>{{ severity | capitalize }} severity</span></div>
+      {% endfor %}
+    </div>
+    {% if report.ai_review_available %}
+    <p class="verification">AI verification: {{ report.verification.proposed }} proposed, {{ report.verification.verified }} verified, {{ report.verification.dropped }} dropped.</p>
+    {% else %}
+    <p class="notice"><strong>{{ report.ai_notice }}</strong>. This report contains code checks only; AI proposal counts unavailable.</p>
+    {% endif %}
+  </section>
+  <section id="findings">
+    <h2>Findings</h2>
+    {% if report.findings %}
+    <div class="table-wrap">
+      <table class="findings-table">
+        <thead><tr><th class="source-column" scope="col">Source</th><th class="severity-column" scope="col">Severity</th><th class="issue-column" scope="col">Issue</th><th class="evidence-column" scope="col">Evidence</th><th class="fix-column" scope="col">Suggested fix</th></tr></thead>
+        <tbody>
+        {% for finding in report.findings %}
+          <tr>
+            <td>{{ finding.source }}</td>
+            <td><span class="badge severity-{{ finding.severity }}">{{ finding.severity }}</span></td>
+            <td><strong>{{ finding.title }}</strong><p>{{ finding.explanation }}</p></td>
+            <td class="evidence">{{ finding.evidence }}</td>
+            <td>{{ finding.fix }}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <p class="empty">No findings from the completed checks. Review the limitations below.</p>
+    {% endif %}
+  </section>
+  <section id="facts">
+    <h2>Page facts</h2>
+    <table>
+      <thead><tr><th class="fact-label" scope="col">Fact</th><th scope="col">Value</th></tr></thead>
+      <tbody>
+      {% for label, key, value in fact_rows %}
+        <tr><th scope="row">{{ label }}<span class="fact-key">{{ key }}</span></th><td><pre class="fact-value">{{ value }}</pre></td></tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </section>
+  <section id="limitations" class="limitations">
+    <h2>Limitations</h2>
+    <ul>{% for limitation in report.limitations %}<li>{{ limitation }}</li>{% endfor %}</ul>
+  </section>
+</main>
+</body>
+</html>

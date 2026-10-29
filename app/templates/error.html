@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page review could not complete</title>
+  <style>
+    body { font: 16px/1.6 system-ui, sans-serif; color: #172238; background: #f4f6fa; margin: 0; }
+    main { max-width: 640px; margin: 60px auto; padding: 32px; background: white; border: 1px solid #dce2ec; border-radius: 10px; }
+    h1 { font-size: 26px; } a { color: #183e70; } small { color: #53637e; overflow-wrap: anywhere; }
+    @media(max-width:700px) { main { margin: 16px; } }
+  </style>
+</head>
+<body><main>
+  <small>Request status {{ status }}</small>
+  <h1>The page review could not complete</h1>
+  <p>{{ message }}</p>
+  <p><a href="/">Return to the review form</a></p>
+  <small>Request ID: {{ request_id }}</small>
+</main></body></html>

@@ -1,0 +1,195 @@
+Python: 3.12.16
+google-adk: 2.13.0
+google-genai: 2.33.0
+pydantic: 2.14.1
+
+google.adk.workflow._workflow.Workflow(*, name: str, description: str = '', rerun_on_resume: bool = True, wait_for_output: bool = False, retry_config: google.adk.workflow._retry_config.RetryConfig | None = None, timeout: float | None = None, input_schema: Union[dict[Any, Any], type, google.genai.types.Schema, types.GenericAlias, types.UnionType, _UnionGenericAlias, NoneType] = None, output_schema: Union[dict[Any, Any], type, google.genai.types.Schema, types.GenericAlias, types.UnionType, _UnionGenericAlias, NoneType] = None, state_schema: type[pydantic.main.BaseModel] | None = None, edges: list[google.adk.workflow._graph.Edge | tuple[typing.Union[google.adk.workflow._base_node.BaseNode, google.adk.tools.base_tool.BaseTool, collections.abc.Callable[..., typing.Any], typing.Literal['START'], tuple[typing.Union[google.adk.workflow._base_node.BaseNode, google.adk.tools.base_tool.BaseTool, collections.abc.Callable[..., typing.Any], typing.Literal['START']], ...], dict[bool | int | str, typing.Union[google.adk.workflow._base_node.BaseNode, google.adk.tools.base_tool.BaseTool, collections.abc.Callable[..., typing.Any], typing.Literal['START'], tuple[typing.Union[google.adk.workflow._base_node.BaseNode, google.adk.tools.base_tool.BaseTool, collections.abc.Callable[..., typing.Any], typing.Literal['START']], ...]]]], ...]] = <factory>, max_concurrency: int | None = None, graph: google.adk.workflow._graph.Graph | None = None) -> None
+
+google.adk.workflow._node.node(node_like: 'definitions.NodeLike | None' = None, *, name: 'str | None' = None, rerun_on_resume: 'bool | None' = None, retry_config: 'RetryConfig | None' = None, timeout: 'float | None' = None, parallel_worker: 'bool' = False, max_parallel_workers: 'int | None' = None, auth_config: 'AuthConfig | None' = None, require_confirmation: 'bool | Callable[..., bool] | None' = None, parameter_binding: "Literal['state', 'node_input']" = 'state') -> 'Any'
+
+google.adk.workflow._retry_config.RetryConfig(*, max_attempts: int | None = None, initial_delay: float | None = None, max_delay: float | None = None, backoff_factor: float | None = None, jitter: float | None = None, exceptions: list[str | type[BaseException]] | None = None) -> None
+
+google.adk.agents.llm_agent.LlmAgent(*, name: str, description: str = '', rerun_on_resume: bool = False, wait_for_output: bool = False, retry_config: google.adk.workflow._retry_config.RetryConfig | None = None, timeout: float | None = None, input_schema: Optional[type[pydantic.main.BaseModel]] = None, output_schema: Union[dict[Any, Any], type, google.genai.types.Schema, types.GenericAlias, types.UnionType, _UnionGenericAlias, NoneType] = None, state_schema: type[pydantic.main.BaseModel] | None = None, parent_agent: Optional[google.adk.agents.base_agent.BaseAgent] = None, sub_agents: list[google.adk.agents.base_agent.BaseAgent] = <factory>, before_agent_callback: Union[Callable[[google.adk.agents.context.Context], Union[Awaitable[Optional[google.genai.types.Content]], google.genai.types.Content, NoneType]], list[Callable[[google.adk.agents.context.Context], Union[Awaitable[Optional[google.genai.types.Content]], google.genai.types.Content, NoneType]]], NoneType] = None, after_agent_callback: Union[Callable[[google.adk.agents.context.Context], Union[Awaitable[Optional[google.genai.types.Content]], google.genai.types.Content, NoneType]], list[Callable[[google.adk.agents.context.Context], Union[Awaitable[Optional[google.genai.types.Content]], google.genai.types.Content, NoneType]]], NoneType] = None, model: Union[str, google.adk.models.base_llm.BaseLlm] = '', instruction: Union[str, Callable[[google.adk.agents.readonly_context.ReadonlyContext], Union[str, Awaitable[str]]]] = '', global_instruction: Union[str, Callable[[google.adk.agents.readonly_context.ReadonlyContext], Union[str, Awaitable[str]]]] = '', static_instruction: Union[google.genai.types.Content, str, google.genai.types.File, google.genai.types.Part, list[Union[str, google.genai.types.File, google.genai.types.Part]], NoneType] = None, tools: list[typing.Union[typing.Callable, google.adk.tools.base_tool.BaseTool, google.adk.tools.base_toolset.BaseToolset]] = <factory>, generate_content_config: Optional[google.genai.types.GenerateContentConfig] = None, mode: Union[Literal['chat', 'task', 'single_turn'], google.adk.utils._agent_mode.AgentMode, NoneType] = None, parallel_worker: bool | None = None, disallow_transfer_to_parent: bool = False, disallow_transfer_to_peers: bool = False, include_contents: Literal['default', 'none'] = 'default', output_key: Optional[str] = None, planner: Optional[google.adk.planners.base_planner.BasePlanner] = None, code_executor: Optional[google.adk.code_executors.base_code_executor.BaseCodeExecutor] = None, before_model_callback: Union[Callable[[google.adk.agents.context.Context, google.adk.models.llm_request.LlmRequest], Union[Awaitable[Optional[google.adk.models.llm_response.LlmResponse]], google.adk.models.llm_response.LlmResponse, NoneType]], list[Callable[[google.adk.agents.context.Context, google.adk.models.llm_request.LlmRequest], Union[Awaitable[Optional[google.adk.models.llm_response.LlmResponse]], google.adk.models.llm_response.LlmResponse, NoneType]]], NoneType] = None, after_model_callback: Union[Callable[[google.adk.agents.context.Context, google.adk.models.llm_response.LlmResponse], Union[Awaitable[Optional[google.adk.models.llm_response.LlmResponse]], google.adk.models.llm_response.LlmResponse, NoneType]], list[Callable[[google.adk.agents.context.Context, google.adk.models.llm_response.LlmResponse], Union[Awaitable[Optional[google.adk.models.llm_response.LlmResponse]], google.adk.models.llm_response.LlmResponse, NoneType]]], NoneType] = None, on_model_error_callback: Union[Callable[[google.adk.agents.context.Context, google.adk.models.llm_request.LlmRequest, Exception], Union[Awaitable[Optional[google.adk.models.llm_response.LlmResponse]], google.adk.models.llm_response.LlmResponse, NoneType]], list[Callable[[google.adk.agents.context.Context, google.adk.models.llm_request.LlmRequest, Exception], Union[Awaitable[Optional[google.adk.models.llm_response.LlmResponse]], google.adk.models.llm_response.LlmResponse, NoneType]]], NoneType] = None, before_tool_callback: Union[Callable[[google.adk.tools.base_tool.BaseTool, dict[str, Any], google.adk.agents.context.Context], Union[Awaitable[Optional[dict[str, Any]]], dict[str, Any], NoneType]], list[Callable[[google.adk.tools.base_tool.BaseTool, dict[str, Any], google.adk.agents.context.Context], Union[Awaitable[Optional[dict[str, Any]]], dict[str, Any], NoneType]]], NoneType] = None, after_tool_callback: Union[Callable[[google.adk.tools.base_tool.BaseTool, dict[str, Any], google.adk.agents.context.Context, dict[str, Any]], Union[Awaitable[Optional[dict[str, Any]]], dict[str, Any], NoneType]], list[Callable[[google.adk.tools.base_tool.BaseTool, dict[str, Any], google.adk.agents.context.Context, dict[str, Any]], Union[Awaitable[Optional[dict[str, Any]]], dict[str, Any], NoneType]]], NoneType] = None, on_tool_error_callback: Union[Callable[[google.adk.tools.base_tool.BaseTool, dict[str, Any], google.adk.agents.context.Context, Exception], Union[Awaitable[Optional[dict[str, Any]]], dict[str, Any], NoneType]], list[Callable[[google.adk.tools.base_tool.BaseTool, dict[str, Any], google.adk.agents.context.Context, Exception], Union[Awaitable[Optional[dict[str, Any]]], dict[str, Any], NoneType]]], NoneType] = None) -> None
+
+google.adk.runners.Runner(*, app: 'Optional[App]' = None, app_name: 'Optional[str]' = None, agent: 'Optional[BaseAgent]' = None, node: 'BaseNode | None' = None, plugins: 'Optional[List[BasePlugin]]' = None, artifact_service: 'Optional[BaseArtifactService]' = None, session_service: 'BaseSessionService', memory_service: 'Optional[BaseMemoryService]' = None, credential_service: 'Optional[BaseCredentialService]' = None, plugin_close_timeout: 'float' = 5.0, auto_create_session: 'bool' = False) -> 'None'
+
+google.adk.runners.Runner.run_async(self, *, user_id: 'str', session_id: 'str', invocation_id: 'Optional[str]' = None, new_message: 'Optional[types.Content]' = None, state_delta: 'Optional[dict[str, Any]]' = None, run_config: 'Optional[RunConfig]' = None, yield_user_message: 'bool' = False, abort_signal: 'Optional[asyncio.Event]' = None) -> 'AsyncGenerator[Event, None]'
+
+google.adk.runners.Runner.close(self) -> 'None'
+
+google.adk.sessions.in_memory_session_service.InMemorySessionService() -> 'None'
+
+google.adk.sessions.in_memory_session_service.InMemorySessionService.create_session(self, *, app_name: 'str', user_id: 'str', state: 'Optional[dict[str, Any]]' = None, session_id: 'Optional[str]' = None) -> 'Session'
+
+google.adk.sessions.in_memory_session_service.InMemorySessionService.get_session(self, *, app_name: 'str', user_id: 'str', session_id: 'str', config: 'Optional[GetSessionConfig]' = None) -> 'Optional[Session]'
+
+google.adk.sessions.in_memory_session_service.InMemorySessionService.delete_session(self, *, app_name: 'str', user_id: 'str', session_id: 'str') -> 'None'
+
+google.adk.sessions.in_memory_session_service.InMemorySessionService.append_event(self, session: 'Session', event: 'Event') -> 'Event'
+
+google.adk.models.base_llm.BaseLlm(*, model: str) -> None
+
+google.adk.models.base_llm.BaseLlm.generate_content_async(self, llm_request: 'LlmRequest', stream: 'bool' = False) -> 'AsyncGenerator[LlmResponse, None]'
+
+google.adk.models.llm_response.LlmResponse(*, modelVersion: Optional[str] = None, content: Optional[google.genai.types.Content] = None, groundingMetadata: Optional[google.genai.types.GroundingMetadata] = None, partial: Optional[bool] = None, turnComplete: Optional[bool] = None, turnCompleteReason: Optional[google.genai.types.TurnCompleteReason] = None, interactionStatus: Optional[google.genai.types.InteractionStatus] = None, finishReason: Optional[google.genai.types.FinishReason] = None, errorCode: Optional[str] = None, errorMessage: Optional[str] = None, interrupted: Optional[bool] = None, customMetadata: Optional[dict[str, Any]] = None, usageMetadata: Optional[google.genai.types.GenerateContentResponseUsageMetadata] = None, liveSessionResumptionUpdate: Optional[google.genai.types.LiveServerSessionResumptionUpdate] = None, liveSessionId: Optional[str] = None, goAway: Optional[google.genai.types.LiveServerGoAway] = None, voiceActivity: Optional[google.genai.types.VoiceActivity] = None, inputTranscription: Optional[google.genai.types.Transcription] = None, outputTranscription: Optional[google.genai.types.Transcription] = None, avgLogprobs: Optional[float] = None, logprobsResult: Optional[google.genai.types.LogprobsResult] = None, cacheMetadata: Optional[google.adk.models.cache_metadata.CacheMetadata] = None, citationMetadata: Optional[google.genai.types.CitationMetadata] = None, interactionId: Optional[str] = None, environmentId: Optional[str] = None) -> None
+
+google.genai.types.Content(**data: 'Any') -> 'None'
+
+google.genai.types.Part(value: Optional[ForwardRef('PartUnionDict')] = None, /, *, video_metadata: Optional[google.genai.types.VideoMetadata] = None, thought: Optional[bool] = None, inline_data: Optional[google.genai.types.Blob] = None, file_data: Optional[google.genai.types.FileData] = None, thought_signature: Optional[bytes] = None, function_call: Optional[google.genai.types.FunctionCall] = None, code_execution_result: Optional[google.genai.types.CodeExecutionResult] = None, executable_code: Optional[google.genai.types.ExecutableCode] = None, function_response: Optional[google.genai.types.FunctionResponse] = None, text: Optional[str] = None, **kwargs: Any)
+
+google.adk.events.event.Event(*, modelVersion: Optional[str] = None, content: Optional[google.genai.types.Content] = None, groundingMetadata: Optional[google.genai.types.GroundingMetadata] = None, partial: Optional[bool] = None, turnComplete: Optional[bool] = None, turnCompleteReason: Optional[google.genai.types.TurnCompleteReason] = None, interactionStatus: Optional[google.genai.types.InteractionStatus] = None, finishReason: Optional[google.genai.types.FinishReason] = None, errorCode: Optional[str] = None, errorMessage: Optional[str] = None, interrupted: Optional[bool] = None, customMetadata: Optional[dict[str, Any]] = None, usageMetadata: Optional[google.genai.types.GenerateContentResponseUsageMetadata] = None, liveSessionResumptionUpdate: Optional[google.genai.types.LiveServerSessionResumptionUpdate] = None, liveSessionId: Optional[str] = None, goAway: Optional[google.genai.types.LiveServerGoAway] = None, voiceActivity: Optional[google.genai.types.VoiceActivity] = None, inputTranscription: Optional[google.genai.types.Transcription] = None, outputTranscription: Optional[google.genai.types.Transcription] = None, avgLogprobs: Optional[float] = None, logprobsResult: Optional[google.genai.types.LogprobsResult] = None, cacheMetadata: Optional[google.adk.models.cache_metadata.CacheMetadata] = None, citationMetadata: Optional[google.genai.types.CitationMetadata] = None, interactionId: Optional[str] = None, environmentId: Optional[str] = None, invocationId: str = '', author: str = '', actions: google.adk.events.event_actions.EventActions = <factory>, output: typing.Any | None = None, nodeInfo: google.adk.events.event.NodeInfo = <factory>, longRunningToolIds: set[str] | None = None, branch: str | None = None, isolationScope: str | None = None, id: str = '', timestamp: float = <factory>) -> None
+
+google.adk.events.event_actions.EventActions(*, skipSummarization: Optional[bool] = None, stateDelta: dict[str, typing.Any] = <factory>, artifactDelta: dict[str, int] = <factory>, transferToAgent: Optional[str] = None, transferReason: Optional[str] = None, escalate: Optional[bool] = None, requestedAuthConfigs: dict[str, typing.Any] = <factory>, requestedToolConfirmations: dict[str, google.adk.tools.tool_confirmation.ToolConfirmation] = <factory>, compaction: Optional[google.adk.events.event_actions.EventCompaction] = None, endOfAgent: Optional[bool] = None, agentState: Optional[dict[str, Any]] = None, rewindBeforeInvocationId: Optional[str] = None, route: Union[bool, int, str, list[Union[bool, int, str]], NoneType] = None, renderUiWidgets: Optional[list[google.adk.events.ui_widget.UiWidget]] = None, setModelResponse: Optional[Any] = None) -> None
+
+google.adk.events.event.NodeInfo(*, path: str = '', outputFor: list[str] | None = None, messageAsOutput: bool | None = None) -> None
+
+google.adk.events.event.NodeInfo.name(self) -> 'str'
+
+google.adk.agents.run_config.RunConfig(*, speech_config: Optional[google.genai.types.SpeechConfig] = None, http_options: Optional[google.genai.types.HttpOptions] = None, labels: Optional[dict[str, str]] = None, service_tier: Union[google.adk.models._service_tier.ServiceTier, str, NoneType] = None, response_modalities: Optional[list[google.genai.types.Modality]] = None, avatar_config: Optional[google.genai.types.AvatarConfig] = None, save_input_blobs_as_artifacts: bool = False, support_cfc: bool = False, streaming_mode: google.adk.agents._streaming_mode.StreamingMode = <StreamingMode.NONE: None>, output_audio_transcription: Optional[google.genai.types.AudioTranscriptionConfig] = <factory>, input_audio_transcription: Optional[google.genai.types.AudioTranscriptionConfig] = <factory>, realtime_input_config: Optional[google.genai.types.RealtimeInputConfig] = None, explicit_vad_signal: Optional[bool] = None, translation_config: Optional[google.genai.types.TranslationConfig] = None, enable_affective_dialog: Optional[bool] = None, proactivity: Optional[google.genai.types.ProactivityConfig] = None, session_resumption: Optional[google.genai.types.SessionResumptionConfig] = None, history_config: Optional[google.genai.types.HistoryConfig] = None, context_window_compression: Optional[google.genai.types.ContextWindowCompressionConfig] = None, save_live_blob: bool = False, tool_thread_pool_config: Optional[google.adk.agents.run_config.ToolThreadPoolConfig] = None, save_live_audio: bool = False, max_llm_calls: int = <factory>, custom_metadata: Optional[dict[str, Any]] = None, telemetry: google.adk.telemetry.context.TelemetryConfig | None = None, get_session_config: Optional[google.adk.sessions.base_session_service.GetSessionConfig] = None, model_input_context: list[google.genai.types.Content] | None = None, include_thoughts_from_other_agents: bool = False) -> None
+
+google.adk.telemetry.context.TelemetryConfig(*, genai_semconv_stability_opt_in: Optional[Literal['stable', 'experimental']] = None, capture_message_content: Optional[google.adk.telemetry.context.ContentCapturingMode] = None, adk_experimental_telemetry_opt_in: Optional[Annotated[bool, Strict(strict=True)]] = None, experimental_features_opt_in: Optional[frozenset[str]] = None) -> None
+
+google.adk.workflow._errors.NodeTimeoutError(*, node_name: 'str', timeout: 'float') -> 'None'
+
+google.adk.models.registry.LLMRegistry.new_llm(model: 'str') -> 'BaseLlm'
+
+google.adk.models.google_llm.Gemini(*, model: str = 'gemini-2.5-flash', client: Optional[google.genai.client.Client] = None, client_kwargs: Optional[dict[str, Any]] = None, base_url: Optional[str] = None, api_version: Optional[str] = None, speech_config: Optional[google.genai.types.SpeechConfig] = None, use_interactions_api: bool = False, retry_options: Optional[google.genai.types.HttpRetryOptions] = None) -> None
+
+google.genai.client.Client(*, enterprise: 'Optional[bool]' = None, vertexai: 'Optional[bool]' = None, api_key: 'Optional[str]' = None, credentials: 'Optional[google.auth.credentials.Credentials]' = None, project: 'Optional[str]' = None, location: 'Optional[str]' = None, debug_config: 'Optional[DebugConfig]' = None, http_options: 'Optional[Union[HttpOptions, HttpOptionsDict]]' = None)
+
+google.genai.client.Client.close(self) -> 'None'
+
+google.genai.types.GenerateContentConfig(**data: 'Any') -> 'None'
+
+google.genai.types.HttpOptions(**data: 'Any') -> 'None'
+
+google.genai.types.HttpRetryOptions(**data: 'Any') -> 'None'
+
+START: BaseNode(name='__START__', description='', rerun_on_resume=False, wait_for_output=False, retry_config=None, timeout=None, input_schema=None, output_schema=None, state_schema=None)
+
+RetryConfig source:
+ class RetryConfig(BaseModel):
+  """Configuration for retrying a node."""
+
+  max_attempts: int | None = Field(
+      default=None,
+      description="""Maximum number of attempts, including the original request.
+      If 0 or 1, it means no retries. If not specified, default to 5.""",
+  )
+  initial_delay: float | None = Field(
+      default=None,
+      description="""Initial delay before the first retry, in fractions of a second. If not specified, default to 1.0 second.""",
+  )
+  max_delay: float | None = Field(
+      default=None,
+      description="""Maximum delay between retries, in fractions of a second. If not specified, default to 60.0 seconds.""",
+  )
+  backoff_factor: float | None = Field(
+      default=None,
+      description="""Multiplier by which the delay increases after each attempt. If not specified, default to 2.0.""",
+  )
+  jitter: float | None = Field(
+      default=None,
+      description="""Randomness factor for the delay. If not specified, default to 1.0. Otherwise use 0.0 to remove randomness.""",
+  )
+
+  exceptions: list[str | type[BaseException]] | None = Field(
+      default=None,
+      description="""Exceptions to retry on. Accepts exception class names as
+      strings (e.g. ``['ValueError']``) or exception classes directly (e.g.
+      ``[ValueError]``). ``None`` means retry on all exceptions.""",
+  )
+
+  @field_validator('exceptions', mode='before')
+  @classmethod
+  def _normalize_exceptions(cls, v: list[Any] | None) -> list[str] | None:
+    """Converts exception classes to their class names for uniform handling."""
+    if v is None:
+      return None
+    normalized = []
+    for item in v:
+      if isinstance(item, str):
+        normalized.append(item)
+      elif isinstance(item, type) and issubclass(item, BaseException):
+        normalized.append(item.__name__)
+      else:
+        raise WorkflowConfigurationError(
+            'exceptions must contain exception class names (str) or'
+            f' exception classes, got {type(item).__name__}: {item!r}'
+        )
+    return normalized
+
+
+ContentCapturingMode: ['NO_CONTENT', 'EVENT_ONLY', 'SPAN_ONLY', 'SPAN_AND_EVENT']
+GenerateContentConfig fields: ['http_options', 'should_return_http_response', 'system_instruction', 'temperature', 'top_p', 'top_k', 'candidate_count', 'max_output_tokens', 'stop_sequences', 'response_logprobs', 'logprobs', 'presence_penalty', 'frequency_penalty', 'seed', 'response_mime_type', 'response_schema', 'response_json_schema', 'routing_config', 'model_selection_config', 'safety_settings', 'tools', 'tool_config', 'labels', 'cached_content', 'response_modalities', 'media_resolution', 'speech_config', 'audio_timestamp', 'automatic_function_calling', 'thinking_config', 'image_config', 'enable_enhanced_civic_answers', 'model_armor_config', 'service_tier', 'audio_transcription_config', 'continuation_token', 'automatic_continuation', 'generation_output_config', 'store']
+HttpOptions fields: ['base_url', 'base_url_resource_scope', 'api_version', 'headers', 'timeout', 'client_args', 'async_client_args', 'extra_body', 'retry_options', 'httpx_client', 'httpx_async_client', 'aiohttp_client']
+HttpRetryOptions fields: ['attempts', 'initial_delay', 'max_delay', 'exp_base', 'jitter', 'http_status_codes']
+
+Vertex-switch source excerpts:
+adk/utils/env_utils.py:86:     True if enabled, False otherwise.
+adk/utils/env_utils.py:87:   """
+adk/utils/env_utils.py:88:   if 'GOOGLE_GENAI_USE_ENTERPRISE' in os.environ:
+adk/utils/env_utils.py:89:     return _is_genai_env_enabled('GOOGLE_GENAI_USE_ENTERPRISE')
+adk/utils/env_utils.py:90:   if 'GOOGLE_GENAI_USE_VERTEXAI' in os.environ:
+adk/utils/env_utils.py:91:     warnings.warn(
+adk/utils/env_utils.py:92:         'GOOGLE_GENAI_USE_VERTEXAI is deprecated, please use'
+adk/utils/env_utils.py:93:         ' GOOGLE_GENAI_USE_ENTERPRISE instead',
+adk/utils/env_utils.py:94:         DeprecationWarning,
+adk/utils/env_utils.py:95:         stacklevel=2,
+adk/utils/env_utils.py:96:     )
+adk/utils/env_utils.py:97:     return _is_genai_env_enabled('GOOGLE_GENAI_USE_VERTEXAI')
+adk/utils/env_utils.py:98:   return False
+adk/utils/env_utils.py:99: 
+adk/utils/env_utils.py:100: 
+genai/_api_client.py:869:     self.custom_base_url = None
+genai/_api_client.py:870:     if self.vertexai is None:
+genai/_api_client.py:871:       env_enterprise_str = os.environ.get('GOOGLE_GENAI_USE_ENTERPRISE', None)
+genai/_api_client.py:872:       env_vertexai_str = os.environ.get('GOOGLE_GENAI_USE_VERTEXAI', None)
+genai/_api_client.py:873: 
+genai/_api_client.py:874:       env_enterprise = None
+genai/_api_client.py:875:       if env_enterprise_str is not None:
+genai/_api_client.py:886:       ):
+genai/_api_client.py:887:         warnings.warn(
+genai/_api_client.py:888:             'Warning: Both GOOGLE_GENAI_USE_ENTERPRISE and'
+genai/_api_client.py:889:             ' GOOGLE_GENAI_USE_VERTEXAI are set with conflicting values. The'
+genai/_api_client.py:890:             ' value of GOOGLE_GENAI_USE_ENTERPRISE will be used.'
+genai/_api_client.py:891:         )
+genai/_api_client.py:892: 
+genai/_api_client.py:893:       if env_enterprise is not None:
+genai/_api_client.py:894:         self.vertexai = env_enterprise
+genai/_api_client.py:895:       elif env_vertexai is not None:
+genai/_api_client.py:896:         self.vertexai = env_vertexai
+genai/_api_client.py:897: 
+genai/_api_client.py:898:     # Validate explicitly set initializer values.
+genai/_api_client.py:899:     if (project or location) and not self.vertexai:
+
+Telemetry privacy source excerpts:
+adk/telemetry/context.py:54: OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT = (
+adk/telemetry/context.py:55:     'OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT'
+adk/telemetry/context.py:58: ADK_CAPTURE_MESSAGE_CONTENT_IN_SPANS = 'ADK_CAPTURE_MESSAGE_CONTENT_IN_SPANS'
+adk/telemetry/context.py:92:   for ``OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT``.
+adk/telemetry/context.py:124:   """Reads ``OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT``."""
+adk/telemetry/context.py:126:       OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT, ''
+adk/telemetry/context.py:138:   """Reads ``ADK_CAPTURE_MESSAGE_CONTENT_IN_SPANS`` (defaults on)."""
+adk/telemetry/context.py:140:       os.getenv(ADK_CAPTURE_MESSAGE_CONTENT_IN_SPANS, 'true').strip().lower()
+adk/telemetry/context.py:197:   default-on ``ADK_CAPTURE_MESSAGE_CONTENT_IN_SPANS`` for legacy spans, and
+adk/telemetry/context.py:219:       ``OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT``. Pass a
+adk/telemetry/context.py:306:     ``OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT`` env var (legacy
+adk/telemetry/context.py:351:     falls back to ``ADK_CAPTURE_MESSAGE_CONTENT_IN_SPANS``, which defaults on.
+
+Phase 5 inspection (2026-10-29; installed google-adk 2.13.0):
+google.adk.models.llm_request.LlmRequest keyword fields:
+  model: Optional[str] = None
+  contents: list[google.genai.types.Content] = factory
+  config: google.genai.types.GenerateContentConfig = factory
+  live_connect_config, tools_dict, cache_config, cache_metadata,
+  cacheable_contents_token_count, previous_interaction_id, service_tier
+google.adk.models.google_llm.Gemini.generate_content_async(
+  self, llm_request: LlmRequest, stream: bool = False
+) -> AsyncGenerator[LlmResponse, None]
+Read installed generate_content_async source: request preprocessing runs first;
+requires request.model; uses self.api_client.aio.models.generate_content[_stream]
+with contents/config; produces LlmResponse objects. Optional saved-page live
+evaluation uses this adapter and production schema/prompt/verifier, without
+making website requests or creating an additional workflow. Offline StubLlm
+tests exercise the request configuration, verification counts and failures.

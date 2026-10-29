@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page SEO review</title>
+  <style>
+    :root { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; color: #172238; background: #f4f6fa; }
+    * { box-sizing: border-box; }
+    body { margin: 0; line-height: 1.6; }
+    main { max-width: 660px; margin: 60px auto; padding: 36px; background: white; border: 1px solid #dce2ec; border-radius: 12px; }
+    h1 { font-size: 32px; line-height: 1.2; margin: 8px 0 18px; }
+    .eyebrow { color: #53637e; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+    p, .hint { color: #53637e; }
+    label { display: block; font-weight: 600; margin-top: 22px; }
+    input { width: 100%; font: inherit; padding: 12px; border: 1px solid #8a97ab; border-radius: 6px; margin-top: 7px; }
+    input:focus, button:focus { outline: 3px solid #a6c4ec; outline-offset: 2px; }
+    button { font: inherit; font-weight: 600; padding: 12px 20px; margin-top: 26px; color: white; background: #183e70; border: 0; border-radius: 6px; cursor: pointer; }
+    .hint { display: block; font-size: 13px; margin-top: 6px; }
+    .notice { background: #fff5df; padding: 14px; border-left: 3px solid #9c6a00; }
+    @media (max-width: 700px) { main { margin: 16px; padding: 24px; } }
+  </style>
+</head>
+<body><main>
+  <div class="eyebrow">Single-page evidence review</div>
+  <h1>Review a public page</h1>
+  <p>Get measured SEO checks and AI recommendations with code-checked supporting evidence.</p>
+  {% if stub_mode %}<p class="notice"><strong>Local stub mode:</strong> no real AI review will be performed.</p>{% endif %}
+  <form action="/audit" method="post" autocomplete="off">
+    <label for="url">Public page URL</label>
+    <input id="url" name="url" type="url" required maxlength="2048" placeholder="https://example.com/page" aria-describedby="url-hint">
+    <span class="hint" id="url-hint">One page, fetched HTML only. JavaScript is not rendered. Robots rules are respected.</span>
+    <label for="access_code">Access code</label>
+    <input id="access_code" name="access_code" type="password" required maxlength="512" autocomplete="off">
+    <button type="submit">Run page review</button>
+    <p class="hint">Up to five audit attempts per hour per client IP. An audit can take up to 90 seconds.</p>
+  </form>
+  <p class="hint">Automated first-pass review, not an authoritative SEO audit. Reports can be printed or downloaded as JSON.</p>
+</main></body></html>

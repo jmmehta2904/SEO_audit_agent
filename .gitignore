@@ -1,0 +1,72 @@
+# Private environment settings
+.env
+.env.*
+!.env.example
+*.env.*
+
+# Credentials, tokens, and secret directories
+secrets/
+.secrets/
+.credentials/
+.gcloud/
+.config/gcloud/
+.ssh/
+.aws/
+
+credentials*.json
+*-credentials.json
+service-account*.json
+*service_account*.json
+application_default_credentials.json
+adc.json
+token.json
+tokens.json
+
+# Private keys and credential bundles
+*.key
+*.pem
+*.p12
+*.pfx
+*.jks
+*.keystore
+id_rsa
+id_ed25519
+.gitkeep
+
+# Existing local Python runtime and downloaded tools
+.venv/
+.runtime/
+.tools/
+
+# Caches and generated Python files
+.cache/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.nox/
+
+# Logs may contain sensitive diagnostic information
+*.log
+logs/
+
+# Locally saved client reports and captured page data
+private_reports/
+private_captures/
+
+# Test coverage and build output
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+dist/
+build/
+*.egg-info/
+
+# Local IDE and operating-system files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
